@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.OurTime.mapper.ReplyDAO">
+	<insert id="replyIns">
+		insert OurTime_Reply (no,Reply_cont,email)
+		values (#{no},#{reply_cont},#{email});
+	</insert>
+	
+	<select id="replyList" resultType="org.OurTime.DTO.ReplyDTO">
+	 	select * from OurTime_Reply
+	 	where no=#{no}
+	</select>
+	
+	<delete id="replyDel">
+		delete from OurTime_Reply 
+		where ReplyNo=#{replyno};
+	</delete>
+	
+	<update id="replyUpt">
+		update OurTime_Reply 
+		set Reply_cont=#{reply_cont}
+		where ReplyNo=#{replyno}
+	</update>
+	 
+</mapper>

@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//src/main/java/org/OurTime/Controller/ReplyController.java=UTF-8
+encoding//src/main/java/org/OurTime/Controller/UploadController.java=UTF-8
+encoding//src/main/java/org/OurTime/Service/ReplyService.java=UTF-8
+encoding//src/main/java/org/OurTime/mapper/ReplyDAO.java=UTF-8
+encoding//src/main/webapp/WEB-INF/views/home.jsp=UTF-8

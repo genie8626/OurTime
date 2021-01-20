@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="org.OurTime.mapper.MemberDAO">
+
+<!-- 회원가입 -->
+<insert id="PostSignUp">
+insert into OurTime_SignUp(name,userName,password,email)
+			values(#{name},#{userName},#{password},#{email})
+</insert>
+
+<!-- 로그인 -->
+<select resultType="org.OurTime.DTO.MemberDTO" id="PostSignIn">
+select * from OurTime_SignUp where email=#{email} and password=#{password};
+</select>
+
+<!-- My Profile -->
+<select id="MyProfile" resultType="org.OurTime.DTO.MemberDTO">
+select * from OurTime_SignUp where email= #{email}
+</select>
+
+<update id="PostMyProfile_Update">
+update OurTime_SignUp 
+set userName=#{userName},password=#{password}
+where email=#{email};
+</update>
+
+<delete id="MyProfile_Delete">
+delete from OurTime_SignUp where email=#{email};
+</delete>
+
+
+
+
+</mapper>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.OurTime.mapper.GalleryDAO">
+
+<!-- Write -->
+	<insert id="PostGallery_Write">
+  		<!-- insert하기 전에(before) tb1_board와 tb1_upload를 연결해 주는 식 -->
+  		<selectKey keyProperty="no" order="BEFORE" resultType="int">
+  			select ifnull(max(no),0)+1 no from OurTime_Board;
+  		</selectKey>
+  			insert into OurTime_Board (no,title, email, content)
+  			values (#{no},#{title},#{email},#{content});
+  	</insert>
+  	
+	<select id="list2" resultType="org.OurTime.DTO.GalleryDTO">
+	select b.no, title, content, email, regidate, replace(concat(uploadpath,"/",uuid,"_",filename),'\\','/') as filename
+	from OurTime_Board b
+	left join OurTime_Upload u
+	on b.no=u.no order by no desc;
+	</select>
+	
+	<select id="getTotal" resultType="int">
+  	select count(*) from OurTime_Board 
+  	</select>
+  	
+  	
+	<select id="detail" resultType="org.OurTime.DTO.GalleryDTO">
+  	select b.no, title,email, content, regidate, replace(concat(uploadpath,"/",uuid,"_",filename),'\\','/') as filename
+	from OurTime_Board B
+	left join OurTime_Upload u
+	on b.no=u.no
+	where b.no=#{no}
+  	</select>
+
+	<update id="PostGallery_Update">
+	update ourtime_board
+	set title=#{title},content=#{content}
+	where no=#{no};
+	</update>
+
+	<delete id="Gallery_Delete">
+	delete from Ourtime_Board where no=#{no};
+	</delete>
+
+
+
+
+
+
+
+
+
+
+</mapper>

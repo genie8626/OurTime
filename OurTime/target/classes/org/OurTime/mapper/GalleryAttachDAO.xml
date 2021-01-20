@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="org.OurTime.mapper.GalleryAttachDAO">
+  
+  <insert id="insert">
+  		insert into OurTime_Upload
+  		values(#{no},#{fileName},#{uploadPath},#{uuid})	
+  	</insert>
+  
+  <!-- 파일 업로드 업데이트 -->
+  <update id="Update">
+  update ourtime_Upload
+  set filename=#{fileName},uploadPath=#{uploadPath},uuid=#{uuid}
+  where no=#{no}
+  </update>
+  
+  </mapper>
